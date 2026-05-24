@@ -1,44 +1,61 @@
-# PitchPilot AI Stadium 3D Pro
+Project Overview
 
-A fully working offline cricket AI dashboard for demo, portfolio and hackathon presentation.
+PitchPilot AI Stadium 3D Pro allows users to select tournaments, teams, venues, pitch conditions, toss results, and match situations. Based on the selected data and live score inputs, the system generates AI-style win predictions, pressure analysis, player impact rankings, team comparison, and live commentary.
 
-## New Advanced Features
+This project is built as a fully working frontend demo and can run directly in the browser without requiring any API key, backend server, or database.
 
-- Realistic CSS stadium background with floodlights, crowd layer and grass depth
-- 3D stadium live board that changes with selected match, team, venue and pitch
-- Dynamic team color theme for every selected team pair
-- Select tournament, preset match, team A, team B, venue, pitch, toss and decision
-- Manual score input for runs, wickets, overs and target
-- Ball-by-ball live input and auto live simulation
-- AI win prediction, run rate, required rate and pressure analysis
-- Dynamic Player Impact XI based on team, pitch, form and live pressure
-- Hologram style 3D player rating cards
-- Team comparison chart
-- Live commentary feed
-- Match history
-- 2 demo modes included:
-  - Demo 1: IPL Death-Over Chase
-  - Demo 2: World Cup Pressure Match
-- Works offline by opening `index.html`
-- Localhost server available with `npm start`
+Key Features
+Match Setup
+Select tournament type
+Choose preset matches
+Select Team A and Team B manually
+Choose venue
+Select pitch type
+Add toss winner
+Select toss decision
+Manual Score Input
+Enter current runs
+Enter wickets
+Enter overs
+Enter target score
+Update match situation manually
+Analyze match pressure instantly
+Live Match View
+Live scoreboard interface
+Ball-by-ball score input
+Auto live simulation mode
+Dynamic match state updates
+Current run rate calculation
+Required run rate calculation
+AI Prediction System
+AI-style win probability
+Team strength comparison
+Pressure-based analysis
+Pitch-condition-based prediction
+Toss and venue impact logic
+Match momentum reading
+Player Analytics
+Player profile cards
+Batting rating
+Bowling rating
+Fielding rating
+Form rating
+Overall impact score
+Dynamic Player Impact XI
+3D hologram-style player cards
+Stadium 3D Experience
+Realistic CSS stadium background
+Floodlight effects
+Crowd layer
+Grass depth effect
+3D stadium live board
+Dynamic team color theme
+Match background changes based on teams and match type
+Demo Modes
 
-## Run Without Localhost
+The project includes two built-in demo modes:
 
-Double-click `index.html`.
-
-## Run With Localhost
-
-```cmd
-cd /d "%USERPROFILE%\Downloads\pitchpilot-ai-stadium-3d-pro"
-npm start
-```
-
-Open:
-
-```txt
-http://localhost:3000
-```
-
-## Important
-
-This project does not need an API key. Live mode is demo/simulation based. A real cricket live-score API can be added later.
+Demo 1: IPL Death-Over Chase
+Simulates a high-pressure IPL chase situation.
+Demo 2: World Cup Pressure Match
+Simulates an international World Cup-style match scenario.
