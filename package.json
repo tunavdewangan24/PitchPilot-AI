@@ -1,0 +1,12 @@
+{
+  "name": "pitchpilot-ai-stadium-3d-pro",
+  "version": "4.0.0",
+  "description": "Advanced PitchPilot AI cricket simulator with 3D stadium background, dynamic team themes, players, matches, manual scoring, live view, demos and AI prediction.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": ["cricket", "ai", "prediction", "ipl", "live-score", "3d", "stadium", "frontend"],
+  "author": "Tunav Dewangan",
+  "license": "MIT"
+}

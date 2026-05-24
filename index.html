@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PitchPilot AI Stadium 3D Pro</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="orb orb-one"></div>
+  <div class="orb orb-two"></div>
+  <div class="grid-bg"></div>
+  <div class="stadium-sky" aria-hidden="true">
+    <div class="floodlight floodlight-left"><i></i><i></i><i></i></div>
+    <div class="floodlight floodlight-right"><i></i><i></i><i></i></div>
+    <div class="crowd crowd-one"></div>
+    <div class="crowd crowd-two"></div>
+    <div class="grass-depth"></div>
+  </div>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo">PP</div>
+      <div>
+        <p class="eyebrow">AI Cricket Command Center • 3D Stadium Edition</p>
+        <h1>PitchPilot AI <span>Stadium 3D Pro</span></h1>
+      </div>
+    </div>
+    <div class="top-actions">
+      <button id="demoOneTopBtn" class="secondary-btn">Demo 1: IPL Chase</button>
+      <button id="demoTwoTopBtn" class="ghost-btn">Demo 2: World Cup</button>
+      <button id="loadDemoBtn" class="ghost-btn">Quick Mini Demo</button>
+      <button id="resetBtn" class="danger-btn">Reset Match</button>
+    </div>
+  </header>
+
+  <main class="app-shell">
+    <aside class="control-panel glass-card">
+      <div class="section-title">
+        <span class="pulse-dot"></span>
+        <h2>Match Setup</h2>
+      </div>
+
+      <label>Tournament / Format</label>
+      <select id="tournamentSelect"></select>
+
+      <label>Select Preset Match</label>
+      <select id="presetMatchSelect"></select>
+
+      <div class="two-col">
+        <div>
+          <label>Team A</label>
+          <select id="teamASelect"></select>
+        </div>
+        <div>
+          <label>Team B</label>
+          <select id="teamBSelect"></select>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <label>Venue</label>
+          <select id="venueSelect"></select>
+        </div>
+        <div>
+          <label>Pitch Type</label>
+          <select id="pitchSelect">
+            <option value="Balanced">Balanced</option>
+            <option value="Batting Paradise">Batting Paradise</option>
+            <option value="Spin Friendly">Spin Friendly</option>
+            <option value="Pace Friendly">Pace Friendly</option>
+            <option value="Slow Wicket">Slow Wicket</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <label>Toss Winner</label>
+          <select id="tossSelect"></select>
+        </div>
+        <div>
+          <label>Toss Decision</label>
+          <select id="decisionSelect">
+            <option value="Bat First">Bat First</option>
+            <option value="Bowl First">Bowl First</option>
+          </select>
+        </div>
+      </div>
+
+      <button id="createMatchBtn" class="primary-btn full">Create / Update Match</button>
+
+      <div class="demo-box">
+        <div class="section-title mini">
+          <span class="pulse-dot blue"></span>
+          <h2>Demo Versions</h2>
+        </div>
+        <p>Use ready-made match demos for presentation. Both demos auto-fill teams, scores, target, commentary and AI prediction.</p>
+        <div class="demo-buttons">
+          <button id="demoOneBtn" class="secondary-btn full">Demo 1: IPL Death-Over Chase</button>
+          <button id="demoTwoBtn" class="ghost-btn full">Demo 2: World Cup Pressure Match</button>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+
+      <div class="section-title mini">
+        <span class="pulse-dot green"></span>
+        <h2>Manual Score Input</h2>
+      </div>
+
+      <div class="two-col">
+        <div>
+          <label>Batting Team</label>
+          <select id="battingTeamSelect"></select>
+        </div>
+        <div>
+          <label>Target</label>
+          <input id="targetInput" type="number" min="0" placeholder="0" />
+        </div>
+      </div>
+
+      <div class="score-grid">
+        <div>
+          <label>Runs</label>
+          <input id="manualRuns" type="number" min="0" placeholder="120" />
+        </div>
+        <div>
+          <label>Wickets</label>
+          <input id="manualWickets" type="number" min="0" max="10" placeholder="4" />
+        </div>
+        <div>
+          <label>Overs</label>
+          <input id="manualOvers" type="text" placeholder="14.3" />
+        </div>
+      </div>
+      <button id="setScoreBtn" class="secondary-btn full">Set Score Manually</button>
+
+      <div class="ball-inputs">
+        <label>Add Ball-by-Ball Event</label>
+        <div class="three-col">
+          <select id="ballRuns">
+            <option value="0">0</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+            <option value="5">5</option>
+            <option value="6">6</option>
+          </select>
+          <select id="ballWicket">
+            <option value="false">No Wicket</option>
+            <option value="true">Wicket</option>
+          </select>
+          <select id="ballExtra">
+            <option value="0">No Extra</option>
+            <option value="1">+1 Extra</option>
+            <option value="2">+2 Extras</option>
+          </select>
+        </div>
+        <input id="ballNote" type="text" placeholder="Commentary note, e.g. massive six over long-on" />
+        <button id="addBallBtn" class="secondary-btn full">Add Ball</button>
+      </div>
+
+      <div class="live-controls">
+        <button id="autoLiveBtn" class="primary-btn">Start Auto Live</button>
+        <button id="endInningsBtn" class="ghost-btn">End Innings</button>
+      </div>
+    </aside>
+
+    <section class="main-dashboard">
+      <div class="hero-score glass-card">
+        <div class="match-meta">
+          <p id="matchBadge" class="badge">IPL 2026 • Demo Match</p>
+          <h2 id="matchTitle">Mumbai Indians vs Chennai Super Kings</h2>
+          <p id="matchInfo">Wankhede Stadium • Balanced pitch • Toss pending</p>
+        </div>
+        <div class="scoreboard">
+          <div class="team-score active" id="teamAScoreCard">
+            <div class="team-mini">
+              <span id="teamAIcon">MI</span>
+              <div>
+                <p id="teamAName">Mumbai Indians</p>
+                <strong id="teamAScore">0/0</strong>
+              </div>
+            </div>
+            <small id="teamAOvers">0.0 overs</small>
+          </div>
+          <div class="versus">VS</div>
+          <div class="team-score" id="teamBScoreCard">
+            <div class="team-mini">
+              <span id="teamBIcon">CSK</span>
+              <div>
+                <p id="teamBName">Chennai Super Kings</p>
+                <strong id="teamBScore">0/0</strong>
+              </div>
+            </div>
+            <small id="teamBOvers">0.0 overs</small>
+          </div>
+        </div>
+        <div class="live-strip">
+          <div><span>Batting</span><strong id="battingNow">Mumbai Indians</strong></div>
+          <div><span>Run Rate</span><strong id="runRate">0.00</strong></div>
+          <div><span>Required Rate</span><strong id="reqRate">-</strong></div>
+          <div><span>Status</span><strong id="liveStatus">Ready</strong></div>
+        </div>
+      </div>
+
+      <div class="cinema-grid">
+        <section class="glass-card stadium-3d-panel tilt-card">
+          <div class="section-title">
+            <span class="pulse-dot"></span>
+            <h2>Realistic 3D Stadium Live Board</h2>
+          </div>
+          <p class="panel-note" id="stadiumLabel">The stadium theme changes automatically when you select a match, team, venue, pitch, or demo.</p>
+          <div class="arena-3d">
+            <div class="match-stage" id="matchStage3D">
+              <div class="team-tower team-left" id="teamA3D"></div>
+              <div class="pitch-3d" id="pitch3D">
+                <div class="crease crease-top"></div>
+                <div class="crease crease-bottom"></div>
+                <div class="wicket wicket-top"></div>
+                <div class="wicket wicket-bottom"></div>
+                <div class="orbit-ball" id="orbitBall"></div>
+                <div class="pitch-glow"></div>
+              </div>
+              <div class="team-tower team-right" id="teamB3D"></div>
+            </div>
+          </div>
+          <div class="broadcast-strip">
+            <div><span>Striker Focus</span><strong id="strikerFocus">-</strong></div>
+            <div><span>Bowler Threat</span><strong id="bowlerThreat">-</strong></div>
+            <div><span>Pitch Mood</span><strong id="pitchMood">Balanced</strong></div>
+            <div><span>Crowd Energy</span><b class="meter"><i id="crowdMeter"></i></b></div>
+          </div>
+        </section>
+
+        <section class="glass-card impact-panel tilt-card">
+          <div class="section-title">
+            <span class="pulse-dot green"></span>
+            <h2>Dynamic Player Impact XI</h2>
+          </div>
+          <p class="panel-note">Player cards, team colors, and impact ratings update with your selected teams and live score pressure.</p>
+          <div class="spotlight-card" id="playerSpotlight3D"></div>
+          <div class="impact-xi" id="impactXI"></div>
+        </section>
+      </div>
+
+      <div class="analytics-grid">
+        <div class="glass-card prediction-card">
+          <div class="section-title">
+            <span class="pulse-dot blue"></span>
+            <h2>AI Win Prediction</h2>
+          </div>
+          <div class="win-bars">
+            <div class="win-row">
+              <span id="winTeamAName">MI</span>
+              <div class="bar"><i id="winBarA"></i></div>
+              <strong id="winProbA">50%</strong>
+            </div>
+            <div class="win-row">
+              <span id="winTeamBName">CSK</span>
+              <div class="bar"><i id="winBarB"></i></div>
+              <strong id="winProbB">50%</strong>
+            </div>
+          </div>
+          <div class="prediction-result" id="predictionResult">Create a match to generate the AI report.</div>
+          <div class="mini-metrics">
+            <div><span>Batting Edge</span><strong id="battingEdge">-</strong></div>
+            <div><span>Bowling Edge</span><strong id="bowlingEdge">-</strong></div>
+            <div><span>Fielding Edge</span><strong id="fieldingEdge">-</strong></div>
+          </div>
+        </div>
+
+        <div class="glass-card live-card">
+          <div class="section-title">
+            <span class="pulse-dot"></span>
+            <h2>Live View</h2>
+          </div>
+          <div class="stadium-view">
+            <div class="pitch-line"></div>
+            <div class="ball-dot" id="ballDot"></div>
+            <div class="field-label top">Boundary Radar</div>
+            <div class="field-label bottom" id="lastBallLabel">Waiting for first ball</div>
+          </div>
+          <div class="last-balls" id="lastBalls"></div>
+        </div>
+      </div>
+
+      <div class="tabs glass-card">
+        <div class="tab-buttons">
+          <button class="tab-btn active" data-tab="players">Players & Ratings</button>
+          <button class="tab-btn" data-tab="comparison">Team Comparison</button>
+          <button class="tab-btn" data-tab="matchroom">3D Match Room</button>
+          <button class="tab-btn" data-tab="commentary">Live Commentary</button>
+          <button class="tab-btn" data-tab="history">Match History</button>
+        </div>
+
+        <div class="tab-content active" id="playersTab">
+          <div class="player-toolbar">
+            <input id="playerSearch" type="text" placeholder="Search player, role, team..." />
+            <select id="roleFilter">
+              <option value="All">All Roles</option>
+              <option value="Batter">Batter</option>
+              <option value="Bowler">Bowler</option>
+              <option value="All-Rounder">All-Rounder</option>
+              <option value="Wicketkeeper">Wicketkeeper</option>
+            </select>
+          </div>
+          <div class="player-grid" id="playerGrid"></div>
+        </div>
+
+        <div class="tab-content" id="comparisonTab">
+          <div class="compare-wrap">
+            <canvas id="comparisonCanvas" width="960" height="360" aria-label="Team comparison chart"></canvas>
+            <div id="comparisonText" class="comparison-text"></div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="matchroomTab">
+          <div class="matchroom-grid">
+            <div class="glass-mini">
+              <h3>Match Scene</h3>
+              <p id="matchSceneText">Create a match to generate the 3D scene.</p>
+            </div>
+            <div class="glass-mini">
+              <h3>AI Tactical Read</h3>
+              <p id="tacticalReadText">The tactical read updates with teams, pitch and score pressure.</p>
+            </div>
+            <div class="glass-mini">
+              <h3>Top Battle</h3>
+              <p id="topBattleText">Top batter vs top bowler will appear here.</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-content" id="commentaryTab">
+          <div class="commentary-actions">
+            <button id="exportReportBtn" class="secondary-btn">Download Match Report</button>
+            <button id="clearCommentaryBtn" class="ghost-btn">Clear Commentary</button>
+          </div>
+          <div class="commentary-feed" id="commentaryFeed"></div>
+        </div>
+
+        <div class="tab-content" id="historyTab">
+          <div id="historyList" class="history-list"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Built for demo + portfolio submission. Stadium 3D Pro works offline with realistic CSS stadium visuals, dynamic team themes, manual score, AI simulation, demos, and live view.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
